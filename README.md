@@ -21,8 +21,8 @@ npm install -g @angular/cli
 ## Clone the repository
 
 ```bash
-git clone https://github.com/your-username/your-angular-project.git
-cd your-angular-project
+git clone https://github.com/xderkx12/task-manager.git
+cd task-manager/task-manager/src
 ```
 
 ## Install dependencies
