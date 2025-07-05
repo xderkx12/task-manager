@@ -1,0 +1,22 @@
+<mat-card class="task-card" [class.completed]="task.status === 'completed'">
+  <div class="task-content">
+    <div class="task-info">
+      <h3 class="task-title">{{ task.title }}</h3>
+      <p class="task-desc" *ngIf="task.description">{{ task.description }}</p>
+    </div>
+
+    <div class="task-actions">
+      <button mat-icon-button color="primary" aria-label="Toggle status" (click)="toggle.emit()">
+        <mat-icon>{{ task.status === 'completed' ? 'check_circle' : 'radio_button_unchecked' }}</mat-icon>
+      </button>
+
+      <button mat-icon-button color="accent" aria-label="View details" (click)="view.emit()">
+        <mat-icon>search</mat-icon>
+      </button>
+
+      <button mat-icon-button color="warn" aria-label="Delete task" (click)="delete.emit()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-card>

@@ -1,0 +1,52 @@
+<main>
+    <mat-card class="task-container">
+      <header>
+        <mat-toolbar color="primary">
+          <h1>Список задач</h1>
+          <span class="spacer"></span>
+        </mat-toolbar>
+      </header>
+  
+      <section class="task-form">
+        <app-task-form (taskCreated)="onTaskCreated($event)"></app-task-form>
+      </section>
+  
+      <section aria-label="Фильтр задач">
+        <mat-button-toggle-group
+          value="all"
+          (change)="setFilter($event.value)"
+          aria-label="Фильтр задач"
+          appearance="legacy"
+        >
+          <mat-button-toggle value="all">Все</mat-button-toggle>
+          <mat-button-toggle value="completed">Выполненные</mat-button-toggle>
+          <mat-button-toggle value="pending">Невыполненные</mat-button-toggle>
+        </mat-button-toggle-group>
+      </section>
+  
+      <section *ngIf="filteredTasks$ | async as tasks; else loading">
+        <div *ngIf="tasks.length > 0; else empty">
+          <ul class="task-list">
+            <li *ngFor="let task of tasks">
+              <app-task-item
+                [task]="task"
+                (view)="viewTask(task.id)"
+                (delete)="deleteTask(task.id)"
+                (toggle)="toggleStatus(task.id)"
+              ></app-task-item>
+              <mat-divider></mat-divider>
+            </li>
+          </ul>
+        </div>
+      </section>
+  
+      <ng-template #loading>
+        <p class="info-text" role="status">Загрузка задач...</p>
+      </ng-template>
+  
+      <ng-template #empty>
+        <p class="info-text">Задачи не найдены. Создайте новую.</p>
+      </ng-template>
+    </mat-card>
+  </main>
+  

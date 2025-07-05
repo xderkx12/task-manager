@@ -1,0 +1,49 @@
+<main>
+  <mat-card *ngIf="task; else notFound" class="task-card" role="article" aria-labelledby="task-title">
+    <header>
+      <mat-card-header>
+        <h1 id="task-title" class="mat-card-title">{{ task.title }}</h1>
+      </mat-card-header>
+    </header>
+
+    <section mat-card-content>
+      <p><strong>Описание:</strong> {{ task.description || '—' }}</p>
+
+      <p>
+        <strong>Статус:</strong>
+        {{ task.status === 'completed' ? 'Выполнена' : 'Не выполнена' }}
+        <mat-icon
+          color="primary"
+          *ngIf="task.status === 'completed'"
+          aria-label="Задача выполнена"
+          >check_circle</mat-icon
+        >
+        <mat-icon
+          color="warn"
+          *ngIf="task.status !== 'completed'"
+          aria-label="Задача не выполнена"
+          >hourglass_empty</mat-icon
+        >
+      </p>
+
+      <p><strong>Создана:</strong> {{ task.createdAt | date: 'medium' }}</p>
+    </section>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="goBack()" aria-label="Вернуться к списку задач">
+        <mat-icon aria-hidden="true">arrow_back</mat-icon> Назад
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <ng-template #notFound>
+    <mat-card class="task-card" role="alert">
+      <mat-card-content>
+        <p>Задача не найдена.</p>
+        <button mat-raised-button color="primary" (click)="goBack()" aria-label="Вернуться к списку задач">
+          <mat-icon aria-hidden="true">arrow_back</mat-icon> Назад
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
+</main>
