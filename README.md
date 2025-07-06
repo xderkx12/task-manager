@@ -31,6 +31,18 @@ cd task-manager/task-manager/src
 npm install
 ```
 
+## Docker
+
+To start the project in docker:
+
+```bash
+ng build --configuration production
+docker build -t my-angular-app .
+docker run -d -p 4000:4000 --name my-angular-app my-angular-app
+```
+
+Open http://localhost:4000 in browser
+
 ## Development server
 
 To start a local development server, run:
@@ -48,17 +60,5 @@ To build the project run:
 ```bash
 ng build
 ```
-
-## Docker
-
-To start the project in docker:
-
-```bash
-ng build --configuration production
-docker build -t my-angular-app .
-docker run -d -p 4000:4000 --name my-angular-app my-angular-app
-```
-
-Open http://localhost:4000 in browser
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
